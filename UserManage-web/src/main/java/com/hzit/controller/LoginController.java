@@ -20,8 +20,12 @@ public class LoginController {
     public String login(@RequestParam("userName") String userName,@RequestParam("password") String password,HttpSession session){
         User user=loginService.login(userName,password);
         if (user!=null){
-            session.setAttribute("user",user);
-            return "usermanage";
+            if (userName.equals(user.getUserName()) && password.equals(user.getPassword())){
+                session.setAttribute("user",user);
+                return "usermanage";
+            }else{
+                return "redirect:/login.html";
+            }
         }else{
             return "redirect:/login.html";
         }

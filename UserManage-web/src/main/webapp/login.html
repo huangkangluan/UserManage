@@ -33,7 +33,7 @@
    <form class="registerform"action="login.do" method="post">
    <div class="fm-item">
 	   <label for="userName" class="form-label">MISS系统登陆：</label>
-	   <input type="text" name="userName"  maxlength="100" id="userName" class="i-text" ajaxurl="demo/valid.jsp" placeholder="请输入用户名">
+	   <input type="text" name="userName" maxlength="100" id="userName" class="i-text" ajaxurl="demo/valid.jsp" placeholder="请输入用户名">
        <div class="ui-form-explain"></div>
   </div>
   
@@ -72,5 +72,21 @@
    <p>Copyright &copy; 2014.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
 </div>
 <div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
+<script type="text/javascript">
+	$(function(){
+		$("#userName").focusout(function(){
+			var userName = $(this).val();
+			if(userName==""){
+				alert("用户名不能为空！")
+			}
+		});
+		$("#password").focusout(function(){
+			var password = $(this).val();
+			if(password==""){
+				alert("密码不能为空！")
+			}
+		});
+	})
+</script>
 </body>
 </html>
