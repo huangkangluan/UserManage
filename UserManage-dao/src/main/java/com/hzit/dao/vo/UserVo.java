@@ -22,6 +22,10 @@ public class UserVo {
 	 */
 	private Integer isdelete;
 	/**
+	 *  角色ID
+	 */
+	private Integer roleId;
+	/**
 	 * 用户ID
 	 * @param userId
 	 */
@@ -80,5 +84,20 @@ public class UserVo {
      */	
     public Integer getIsdelete(){
     	return isdelete;
+    }
+	/**
+	 * 角色ID
+	 * @param roleId
+	 */
+	public void setRoleId(Integer roleId){
+		this.roleId = roleId;
+	}
+	
+    /**
+     * 角色ID
+     * @return Integer
+     */	
+    public Integer getRoleId(){
+    	return roleId;
     }
 }
