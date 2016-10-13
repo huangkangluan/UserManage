@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hzit.dao.mapper.ModuleMapper">
+
+    <sql id="moduleBaseColumnSql">
+        ModuleId,
+        ModuleName,
+        ModuleGrade,
+        ParentModuleId,
+        ModuleAddress,
+        ModuleDescribe,
+        ChildModule,
+        ModuleOrder
+    </sql>
+
+    <sql id="moduleBaseWhereSql">
+        <if test="map!=null">
+            <where>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.moduleId)">
+                    ModuleId = #{map.moduleId}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.moduleName)">
+                    AND ModuleName = #{map.moduleName}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.moduleGrade)">
+                    AND ModuleGrade = #{map.moduleGrade}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.parentModuleId)">
+                    AND ParentModuleId = #{map.parentModuleId}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.moduleAddress)">
+                    AND ModuleAddress = #{map.moduleAddress}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.moduleDescribe)">
+                    AND ModuleDescribe = #{map.moduleDescribe}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.childModule)">
+                    AND ChildModule = #{map.childModule}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.moduleOrder)">
+                    AND ModuleOrder = #{map.moduleOrder}
+                </if>
+            </where>
+        </if>
+    </sql>
+
+    <insert id="insertModule" parameterType="com.hzit.dao.entity.Module">
+        INSERT INTO module(
+        <include refid="moduleBaseColumnSql"/>
+        )VALUES(
+            #{moduleId},
+            #{moduleName},
+            #{moduleGrade},
+            #{parentModuleId},
+            #{moduleAddress},
+            #{moduleDescribe},
+            #{childModule},
+            #{moduleOrder}
+        )
+    </insert>
+
+    
+    <delete id="deleteModuleByModuleId" parameterType="Integer">
+        DELETE FROM module WHERE ModuleId = #{moduleId}
+    </delete>
+
+    <update id="updateModule" parameterType="com.hzit.dao.entity.Module">
+        UPDATE module
+        <set>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(moduleName)">
+                ModuleName = #{moduleName} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(moduleGrade)">
+                ModuleGrade = #{moduleGrade} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(parentModuleId)">
+                ParentModuleId = #{parentModuleId} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(moduleAddress)">
+                ModuleAddress = #{moduleAddress} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(moduleDescribe)">
+                ModuleDescribe = #{moduleDescribe} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(childModule)">
+                ChildModule = #{childModule} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(moduleOrder)">
+                ModuleOrder = #{moduleOrder} ,
+            </if>
+        </set>
+        WHERE ModuleId = #{moduleId}
+    </update>
+
+    <select id="searchModuleByParams" parameterType="map" resultMap="moduleMap">
+        SELECT
+        <include refid="moduleBaseColumnSql"/>
+        FROM module
+        <include refid="moduleBaseWhereSql"/>
+    </select>
+
+    <resultMap type="com.hzit.dao.entity.Module" id="moduleMap">
+        <id column="ModuleId" property="moduleId"/>
+        <result column="ModuleName" property="moduleName"/>
+        <result column="ModuleGrade" property="moduleGrade"/>
+        <result column="ParentModuleId" property="parentModuleId"/>
+        <result column="ModuleAddress" property="moduleAddress"/>
+        <result column="ModuleDescribe" property="moduleDescribe"/>
+        <result column="ChildModule" property="childModule"/>
+        <result column="ModuleOrder" property="moduleOrder"/>
+    </resultMap>
+
+</mapper>

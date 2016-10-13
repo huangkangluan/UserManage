@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hzit.dao.mapper.RolemoduleMapper">
+
+    <sql id="rolemoduleBaseColumnSql">
+        RoleModuleId,
+        RoleId,
+        ModuleId
+    </sql>
+
+    <sql id="rolemoduleBaseWhereSql">
+        <if test="map!=null">
+            <where>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.roleModuleId)">
+                    RoleModuleId = #{map.roleModuleId}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.roleId)">
+                    AND RoleId = #{map.roleId}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.moduleId)">
+                    AND ModuleId = #{map.moduleId}
+                </if>
+            </where>
+        </if>
+    </sql>
+
+    <insert id="insertRolemodule" parameterType="com.hzit.dao.entity.Rolemodule">
+        INSERT INTO rolemodule(
+        <include refid="rolemoduleBaseColumnSql"/>
+        )VALUES(
+            #{roleModuleId},
+            #{roleId},
+            #{moduleId}
+        )
+    </insert>
+
+    
+    <delete id="deleteRolemoduleByRoleModuleId" parameterType="Integer">
+        DELETE FROM rolemodule WHERE RoleModuleId = #{roleModuleId}
+    </delete>
+
+    <update id="updateRolemodule" parameterType="com.hzit.dao.entity.Rolemodule">
+        UPDATE rolemodule
+        <set>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(roleId)">
+                RoleId = #{roleId} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(moduleId)">
+                ModuleId = #{moduleId} ,
+            </if>
+        </set>
+        WHERE RoleModuleId = #{roleModuleId}
+    </update>
+
+    <select id="searchRolemoduleByParams" parameterType="map" resultMap="rolemoduleMap">
+        SELECT
+        <include refid="rolemoduleBaseColumnSql"/>
+        FROM rolemodule
+        <include refid="rolemoduleBaseWhereSql"/>
+    </select>
+
+    <resultMap type="com.hzit.dao.entity.Rolemodule" id="rolemoduleMap">
+        <id column="RoleModuleId" property="roleModuleId"/>
+        <result column="RoleId" property="roleId"/>
+        <result column="ModuleId" property="moduleId"/>
+    </resultMap>
+
+</mapper>
