@@ -67,7 +67,7 @@ public class UserController {
                 //把userVo中的数据封装在session对象中
                 session.setAttribute("userVo",userVo);
                 System.out.println(userVo.toString());
-                return "usermanage";
+                return "home";
             }else{
                 return "redirect:/login.html";
             }
