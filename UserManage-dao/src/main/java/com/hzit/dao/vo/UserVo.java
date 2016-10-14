@@ -1,5 +1,10 @@
 package com.hzit.dao.vo;
 
+import com.hzit.dao.entity.Module;
+
+import javax.validation.constraints.AssertFalse;
+import java.util.List;
+
 /**
  * 
  * @author huangkangluan
@@ -29,6 +34,16 @@ public class UserVo {
 	 * 用户ID
 	 * @param userId
 	 */
+    private List<Module> moduleList;
+
+	public List<Module> getModuleList() {
+		return moduleList;
+	}
+
+	public void setModuleList(List<Module> moduleList) {
+		this.moduleList = moduleList;
+	}
+
 	public void setUserId(Integer userId){
 		this.userId = userId;
 	}
@@ -100,4 +115,16 @@ public class UserVo {
     public Integer getRoleId(){
     	return roleId;
     }
+
+	@Override
+	public String toString() {
+		return "UserVo{" +
+				"userId=" + userId +
+				", userName='" + userName + '\'' +
+				", password='" + password + '\'' +
+				", isdelete=" + isdelete +
+				", roleId=" + roleId +
+				", moduleList=" + moduleList +
+				'}';
+	}
 }

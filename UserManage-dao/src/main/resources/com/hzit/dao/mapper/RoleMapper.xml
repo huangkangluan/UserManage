@@ -12,7 +12,7 @@
     <sql id="roleBaseWhereSql">
         <if test="map!=null">
             <where>
-                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.roleId)">
+                <if test="map.roleId!=null">
                     RoleId = #{map.roleId}
                 </if>
                 <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.roleName)">

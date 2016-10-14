@@ -157,4 +157,18 @@ public class Module {
     public Integer getModuleOrder(){
     	return moduleOrder;
     }
+
+	@Override
+	public String toString() {
+		return "Module{" +
+				"moduleId=" + moduleId +
+				", moduleName='" + moduleName + '\'' +
+				", moduleGrade=" + moduleGrade +
+				", parentModuleId=" + parentModuleId +
+				", moduleAddress='" + moduleAddress + '\'' +
+				", moduleDescribe='" + moduleDescribe + '\'' +
+				", childModule=" + childModule +
+				", moduleOrder=" + moduleOrder +
+				'}';
+	}
 }

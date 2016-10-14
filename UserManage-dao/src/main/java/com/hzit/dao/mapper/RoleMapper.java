@@ -3,6 +3,7 @@ package com.hzit.dao.mapper;
 import java.util.List;
 import java.util.Map;
 
+
 import org.apache.ibatis.annotations.Param;
 import com.hzit.dao.entity.Role;
 import com.fc.platform.commons.page.Page;
@@ -19,5 +20,6 @@ public interface RoleMapper {
 	Page<Role> searchRoleByParams(@Param("map") Map<String, String> map, Pageable pageable);
 
 	List<Role> searchRoleByParams(@Param("map") Map<String, String> map);
+
 
 } 

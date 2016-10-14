@@ -12,13 +12,13 @@
     <sql id="rolemoduleBaseWhereSql">
         <if test="map!=null">
             <where>
-                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.roleModuleId)">
+                <if test="map.roleModuleId!=null">
                     RoleModuleId = #{map.roleModuleId}
                 </if>
-                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.roleId)">
+                <if test="map.roleId!=null">
                     AND RoleId = #{map.roleId}
                 </if>
-                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.moduleId)">
+                <if test="map.moduleId!=null">
                     AND ModuleId = #{map.moduleId}
                 </if>
             </where>

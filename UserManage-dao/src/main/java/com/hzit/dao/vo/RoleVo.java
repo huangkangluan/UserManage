@@ -5,6 +5,7 @@ package com.hzit.dao.vo;
  * @author huangkangluan
  */
 public class RoleVo {
+
 	/**
 	 *  角色ID
 	 */

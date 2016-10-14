@@ -59,10 +59,10 @@
             <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(password)">
                 Password = #{password} ,
             </if>
-            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(isdelete)">
+            <if test="isdelete!=null">
                 isdelete = #{isdelete} ,
             </if>
-            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(roleId)">
+            <if test="roleId!=null">
                 RoleId = #{roleId} ,
             </if>
         </set>

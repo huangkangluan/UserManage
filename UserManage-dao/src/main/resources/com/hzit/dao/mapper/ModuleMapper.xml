@@ -17,16 +17,16 @@
     <sql id="moduleBaseWhereSql">
         <if test="map!=null">
             <where>
-                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.moduleId)">
+                <if test="map.moduleId!=null">
                     ModuleId = #{map.moduleId}
                 </if>
                 <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.moduleName)">
                     AND ModuleName = #{map.moduleName}
                 </if>
-                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.moduleGrade)">
+                <if test="map.moduleGrade!=null">
                     AND ModuleGrade = #{map.moduleGrade}
                 </if>
-                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.parentModuleId)">
+                <if test="map.parentModuleId!=null">
                     AND ParentModuleId = #{map.parentModuleId}
                 </if>
                 <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.moduleAddress)">
@@ -35,10 +35,10 @@
                 <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.moduleDescribe)">
                     AND ModuleDescribe = #{map.moduleDescribe}
                 </if>
-                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.childModule)">
+                <if test="map.childModule!=null">
                     AND ChildModule = #{map.childModule}
                 </if>
-                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.moduleOrder)">
+                <if test="map.moduleOrder!=null">
                     AND ModuleOrder = #{map.moduleOrder}
                 </if>
             </where>
