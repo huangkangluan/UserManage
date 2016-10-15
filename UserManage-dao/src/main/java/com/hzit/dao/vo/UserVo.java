@@ -1,6 +1,7 @@
 package com.hzit.dao.vo;
 
 import com.hzit.dao.entity.Module;
+import com.hzit.dao.entity.Role;
 
 import javax.validation.constraints.AssertFalse;
 import java.util.List;
@@ -34,7 +35,17 @@ public class UserVo {
 	 * 用户ID
 	 * @param userId
 	 */
-    private List<Module> moduleList;
+    private String roleName;
+
+	public String getRoleName() {
+		return roleName;
+	}
+
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
+
+	private List<Module> moduleList;
 
 	public List<Module> getModuleList() {
 		return moduleList;

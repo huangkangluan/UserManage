@@ -30,4 +30,21 @@ public class UserServiceImpl implements UserService{
         }
         return null;
     }
+
+    @Override
+    public boolean insertUser(User user) {
+        try{
+            userMapper.insertUser(user);
+            return true;
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+            return false;
+    }
+
+    @Override
+    public List<UserVo> findUser() {
+         List<UserVo> userList=userMapper.findUser(null);
+        return userList;
+    }
 }

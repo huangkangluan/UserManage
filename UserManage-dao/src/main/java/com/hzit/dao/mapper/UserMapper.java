@@ -3,6 +3,7 @@ package com.hzit.dao.mapper;
 import java.util.List;
 import java.util.Map;
 
+import com.hzit.dao.vo.UserVo;
 import org.apache.ibatis.annotations.Param;
 import com.hzit.dao.entity.User;
 import com.fc.platform.commons.page.Page;
@@ -19,5 +20,7 @@ public interface UserMapper {
 	Page<User> searchUserByParams(@Param("map") Map<String, String> map, Pageable pageable);
 
 	List<User> searchUserByParams(@Param("map") Map<String, String> map);
+
+	List<UserVo> findUser(@Param("map") Map<String, String> map);
 
 } 

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -19,12 +20,20 @@ import java.util.List;
 public class RoleController {
     @Autowired
     private RoleService roleService;
-    @RequestMapping("/findRoleModule")
-    public String findRoleModule(ModelMap modelMap,HttpSession session){
-        User user= (User) session.getAttribute("user");
-        List<RoleVo> list=roleService.findRole(user.getUserId());
-        modelMap.put("list",list);
-        modelMap.put("user",user);
-        return "usermanage";
+    @RequestMapping("/addrole.do")
+    public String addrole(){
+        return "addrole";
+    }
+    @RequestMapping("/findrole.do")
+    public String findrole(ModelMap modelMap){
+        List<Role> list=roleService.findRole(null);
+        modelMap.put("roleList",list);
+        return "findrole";
+    }
+    @RequestMapping("/addroleName")
+    @ResponseBody
+    public boolean addroleName(Role role){
+        boolean boo=roleService.insertRole(role);
+        return boo;
     }
 }

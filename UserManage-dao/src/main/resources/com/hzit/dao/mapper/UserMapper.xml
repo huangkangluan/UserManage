@@ -75,6 +75,9 @@
         FROM user
         <include refid="userBaseWhereSql"/>
     </select>
+    <select id="findUser" parameterType="map" resultType="com.hzit.dao.vo.UserVo">
+        SELECT u.UserId,u.UserName,r.RoleName,u.isdelete FROM `user` u JOIN role r ON u.RoleId=r.RoleId
+    </select>
 
     <resultMap type="com.hzit.dao.entity.User" id="userMap">
         <id column="UserId" property="userId"/>

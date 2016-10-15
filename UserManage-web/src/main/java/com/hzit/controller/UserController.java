@@ -1,11 +1,13 @@
 package com.hzit.controller;
 
 import com.hzit.dao.entity.Module;
+import com.hzit.dao.entity.Role;
 import com.hzit.dao.entity.Rolemodule;
 import com.hzit.dao.entity.User;
 import com.hzit.dao.vo.UserVo;
 import com.hzit.service.ModuleService;
 import com.hzit.service.RoleModuleService;
+import com.hzit.service.RoleService;
 import com.hzit.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,6 +32,8 @@ public class UserController {
     private RoleModuleService roleModuleService;
     @Autowired
     private ModuleService moduleService;
+    @Autowired
+    private RoleService roleService;
     @RequestMapping("/login.do")
     public String login(@RequestParam("userName") String userName,@RequestParam("password") String password,HttpSession session,ModelMap modelMap){
         User user=userService.login(userName,password);
@@ -64,6 +68,12 @@ public class UserController {
                 }
                 //循环完之后，给UserVo里的moduleList属性赋值
                 userVo.setModuleList(moduleList);
+                Map map1=new HashMap();
+                map.put("roleId",user.getRoleId());
+                List<Role> role=roleService.findRole(map);
+                if (role.size()==1){
+                    session.setAttribute("role",role.get(0));
+                }
                 //把userVo中的数据封装在session对象中
                 session.setAttribute("userVo",userVo);
                 System.out.println(userVo.toString());
@@ -74,6 +84,17 @@ public class UserController {
         }else{
             return "redirect:/login.html";
         }
+    }
+    @RequestMapping("/finduser.do")
+    public String finduser(ModelMap modelMap){
+        List<UserVo> userVoList=userService.findUser();
+        modelMap.put("userList",userVoList);
+        return "finduser";
+    }
+    @RequestMapping("/addUser.do")
+    public String adduser(HttpSession session){
+
+        return "adduser";
     }
 
 }

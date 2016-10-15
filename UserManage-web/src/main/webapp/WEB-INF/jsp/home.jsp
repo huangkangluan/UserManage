@@ -88,7 +88,7 @@
         </div>
         <div class="info_center">
           ${userVo.userName}
-          <span id="nt">通知</span><span><a href="#" id="notice">3</a></span>
+          <span id="nt">${role.roleName}</span>
         </div>
       </div>
     </div>
@@ -111,7 +111,7 @@
             <%--判断如果模块ID与父模块ID相等，那么该模块属于当前父模块中的子模块--%>
             <%--如果条件成立，显示模块名称，这个模块名称就是字模块的名称--%>
             <c:if test="${v.moduleId==vo.parentModuleId}">
-              <li><a href="${vo.moduleAddress}">${vo.moduleName}</a></li>
+              <li><a href="${vo.moduleAddress}" target="right">${vo.moduleName}</a></li>
 
             </c:if>
           </c:forEach>
@@ -122,7 +122,7 @@
   </div>
 </div>
 <div class="main">
-  <iframe name="right" id="rightMain" src="main.jsp" frameborder="no" scrolling="auto" width="100%" height="auto" allowtransparency="true"></iframe>
+  <iframe name="right" id="rightMain" src="../../main.html" frameborder="no" scrolling="auto" width="100%" height="auto" allowtransparency="true"></iframe>
 </div>
 <div class="bottom">
   <div id="bottom_bg">版权</div>
